@@ -1,0 +1,30 @@
+
+note over browser:
+User fills a new note and presses "Send".
+end note
+
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+server-->browser: Response 302 Found
+
+note over server:
+Server receives and saves the note, then responds with a redirect request
+causing the browser to perform another GET request
+end note
+
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+server-->browser: HTML page
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+server-->browser: main.js
+
+note over browser:
+Browser executes the JavaScript and requests for note data
+end note
+
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+server-->browser: data.json
+
+note over browser:
+Browser renders the page again now containing the new note
+end note
