@@ -64,20 +64,25 @@ const Statistics = ({good, neutral, bad}) => {
     return (
         <div>
             <h2>Statistiikka</h2>
-            <div>
-                <Statistic text="hyvä" value={good} />
-                <Statistic text="neutraali" value={neutral} />
-                <Statistic text="huono" value={bad} />
-                <Statistic text="yhteensä" value={total(good, neutral, bad)} />
-                <Statistic text="keskiarvo" value={average(good, neutral, bad)} />
-                <Statistic text="positiivisia" value={positives(good, neutral, bad)} />
-            </div>
+            <table>
+                <tbody>
+                    <Statistic text="hyvä" value={good} />
+                    <Statistic text="neutraali" value={neutral} />
+                    <Statistic text="huono" value={bad} />
+                    <Statistic text="yhteensä" value={total(good, neutral, bad)} />
+                    <Statistic text="keskiarvo" value={average(good, neutral, bad)} />
+                    <Statistic text="positiivisia" value={positives(good, neutral, bad)} />
+                </tbody>
+            </table>
         </div>
     )
 };
 
 const Statistic = ({text, value}) => (
-        <p>{text} {value}</p>
+        <tr>
+            <td>{text}</td>
+            <td>{value}</td>
+        </tr>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
