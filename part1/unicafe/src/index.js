@@ -5,6 +5,7 @@ const App = () => {
     const [ good, setGood ] = useState(0);
     const [ neutral, setNeutral ] = useState(0);
     const [ bad, setBad ] = useState(0);
+    const [selected, setSelected] = useState(0)
 
     const setGoodValue = (value) => setGood(value);
     const setNeutralValue = (value) => setNeutral(value);
@@ -79,10 +80,10 @@ const Statistics = ({good, neutral, bad}) => {
 };
 
 const Statistic = ({text, value}) => (
-        <tr>
-            <td>{text}</td>
-            <td>{value}</td>
-        </tr>
+    <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+    </tr>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
