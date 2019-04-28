@@ -49,6 +49,18 @@ const Statistics = ({good, neutral, bad}) => {
         }
     };
 
+    // If no votes return a different rendering
+    if ( total(good, neutral, bad) === 0) {
+        return (
+            <div>
+                <h2>Statistiikkaa</h2>
+                <div>
+                    <p>Ei yhtään annettua palautettua</p>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
             <h2>Statistiikka</h2>
