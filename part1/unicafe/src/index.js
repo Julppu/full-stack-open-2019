@@ -16,7 +16,7 @@ const App = () => {
             <Button handleClick={() => setGoodValue(good + 1)} text='hyvä'/>
             <Button handleClick={() => setNeutralValue(neutral + 1)} text='neutraali'/>
             <Button handleClick={() => setBadValue(bad + 1)} text='huono'/>
-            <Stats good={good} neutral={neutral} bad={bad}/>
+            <Statistics good={good} neutral={neutral} bad={bad}/>
         </div>
     )
 };
@@ -27,7 +27,28 @@ const Button = ({ handleClick, text }) => (
     </button>
 );
 
-const Stats = ({good, neutral, bad}) => {
+const Statistics = ({good, neutral, bad}) => {
+    const total = (good, neutral, bad) => {
+        return good + neutral + bad
+    };
+
+    const average = (good, neutral, bad) => {
+        // good = 1, neutral = 0, bad = -1
+        if (total(good, neutral, bad) === 0) {
+            return 0;
+        } else {
+            return (good - bad) / total(good, neutral, bad)
+        }
+    };
+
+    const positives = (good, neutral, bad) => {
+        if (total(good, neutral, bad) === 0) {
+            return 0;
+        } else {
+            return good / total(good, neutral, bad)
+        }
+    };
+
     return (
         <div>
             <h2>Statistiikka</h2>
@@ -35,6 +56,9 @@ const Stats = ({good, neutral, bad}) => {
                 <p>hyvä {good}</p>
                 <p>neutraali {neutral}</p>
                 <p>huono {bad}</p>
+                <p>yhteensä { total(good, neutral, bad) }</p>
+                <p>keskiarvo { average(good, neutral, bad) }</p>
+                <p>positiivisia { positives(good, neutral, bad) }</p>
             </div>
         </div>
     )
